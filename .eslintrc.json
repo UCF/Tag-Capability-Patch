@@ -8,6 +8,7 @@
       "amd": true
     },
     "globals": {
+      "tcpConfig": true
     },
     "extends": "eslint:recommended",
     "parserOptions": {
