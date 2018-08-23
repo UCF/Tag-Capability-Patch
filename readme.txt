@@ -1,4 +1,4 @@
-=== Tag Capability Fix ===
+=== Tag Capability Patch ===
 Contributors: ucfwebcom
 Tags: ucf, ucf-plugin, tag, capabilities
 Requires at least: 4.7.3

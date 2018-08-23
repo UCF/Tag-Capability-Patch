@@ -2,8 +2,8 @@
 /**
  * All filters and changes should be defined here
  */
-if ( ! class_exists( 'TCF_Filters' ) ) {
-    class TCF_Filters {
+if ( ! class_exists( 'TCP_Filters' ) ) {
+    class TCP_Filters {
         /**
          * Requires users to have manage_categories capability to insert new terms.
          * @author Jim Barnes
