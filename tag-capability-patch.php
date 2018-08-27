@@ -5,6 +5,7 @@ Description: Ensures users have the taxonomy's `manage_terms` capability in orde
 Version: 1.0.0
 Author: UCF Web Communications
 License: GPL3
+Github Plugin URI: UCF/Tag-Capbility-Patch
 */
 if ( ! defined( 'WPINC' ) ) {
     die;
