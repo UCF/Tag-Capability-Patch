@@ -21,21 +21,22 @@ if ( ! class_exists( 'TCP_Admin' ) ) {
 
             $localization_array = array(
                 'taxonomies' => array()
-            );
+			);
 
             $taxonomies = get_taxonomies(
                 array(
+					// 'object_type' => array('post'),  // TODO why??
                     'hierarchical' => false,
                     'meta_box_cb' => 'post_tags_meta_box'
                 ),
                 'object'
-            );
+			);
 
             foreach( $taxonomies as $taxonomy ) {
                 $localization_array['taxonomies'][] = array(
                     'taxonomy' => $taxonomy->name,
                     'capability' => $taxonomy->cap->manage_terms,
-                    'canManage' => current_user_can( $capability )
+                    'canManage' => current_user_can( $capability ) // TODO $capability is not defined here
                 );
             }
 
