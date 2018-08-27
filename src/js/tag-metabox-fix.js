@@ -19,6 +19,23 @@
       const disallowedTags = [];
       let inputChecks = 0;
 
+      // The funcion called when the get function is done.
+      const onExecutionDone = () => {
+        inputChecks++;
+
+        if (inputArray.length > inputChecks) {
+          return;
+        }
+
+        if (disallowedTags.length > 0) {
+          $newTag.pointer({
+            content: `<p>The following tags have been removed: <span style="color: red">${disallowedTags.join(', ')}</span>. You do not have permission to publish new tags.</p>`,
+            position: 'bottom'
+          }).pointer('open');
+        }
+      };
+
+      // Loop through inputs and check to see if they exist
       inputArray.forEach((input) => {
         const data = {
           action: 'ajax-tag-search',
@@ -37,24 +54,8 @@
             const $tags = $tagInput.val().split(',');
             $tags.splice($.inArray(input, $tags), 1);
             $tagInput.val($tags.join(','));
-
-            // Increment our inputChecks variable
-            inputChecks++;
           }
         }).done(onExecutionDone);
-
-        const onExecutionDone = () => {
-          if (inputArray.length > inputChecks) {
-            return;
-          }
-
-          if (disallowedTags.length > 0) {
-            $newTag.pointer({
-              content: `<p>The following tags have been removed: <span style="color: red">${disallowedTags.join(', ')}</span>. You do not have permission to publish new tags.</p>`,
-              position: 'bottom'
-            }).pointer('open');
-          }
-        };
       });
     };
   };
