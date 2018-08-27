@@ -41,36 +41,21 @@
             // Increment our inputChecks variable
             inputChecks++;
           }
-        });
+        }).done(onExecutionDone);
+
+        const onExecutionDone = () => {
+          if (inputArray.length > inputChecks) {
+            return;
+          }
+
+          if (disallowedTags.length > 0) {
+            $newTag.pointer({
+              content: `<p>The following tags have been removed: <span style="color: red">${disallowedTags.join(', ')}</span>. You do not have permission to publish new tags.</p>`,
+              position: 'bottom'
+            }).pointer('open');
+          }
+        };
       });
-
-      const onExecutionFinish = () => {
-        if (inputArray.length > inputChecks) {
-          return;
-        }
-
-        if (disallowedTags.length > 0) {
-          $newTag.pointer({
-            content: `<p>The following tags have been removed: <span style="color: red">${disallowedTags.join(', ')}</span>. You do not have permission to publish new tags.</p>`,
-            position: 'bottom'
-          }).pointer('open');
-        }
-
-        removeInterval();
-      };
-
-      const removeInterval = () => {
-        if (typeof checkInterval !== 'undefined') {
-          window.clearInterval(checkInterval);
-        }
-
-        if (typeof timeoutInterval !== 'undefined') {
-          window.clearTimeout(timeoutInterval);
-        }
-      };
-
-      const checkInterval = setInterval(onExecutionFinish, 100);
-      const timeoutInterval = setTimeout(removeInterval, 1000);
     };
   };
 
