@@ -10,7 +10,7 @@ if ( ! class_exists( 'TCP_Admin' ) ) {
          * @param string $hook The page that is being loaded
          */
         public static function enqueue_admin_scripts( $hook ) {
-            if ( $hook !== 'post.php' ) {
+            if ( $hook !== 'post.php' || $hook !== 'post-new.php' ) {
                 return;
             }
 
