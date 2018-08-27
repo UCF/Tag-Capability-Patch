@@ -45,10 +45,21 @@
             }).pointer('open');
           }
 
-          window.clearInterval(checkInterval);
+          removeInterval();
+        };
+
+        const removeInterval = () => {
+          if (typeof checkInterval !== 'undefined') {
+            window.clearInterval(checkInterval);
+          }
+
+          if (typeof timeoutInterval !== 'undefined') {
+            window.clearTimeout(timeoutInterval);
+          }
         };
 
         const checkInterval = setInterval(onExecutionFinish, 25);
+        const timeoutInterval = setTimeout(removeInterval, 1000);
       }
     });
   };
