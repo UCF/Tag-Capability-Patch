@@ -8,7 +8,8 @@
       "amd": true
     },
     "globals": {
-      "tcpConfig": true
+      "tcpConfig": true,
+      "ajaxurl": true
     },
     "extends": "eslint:recommended",
     "parserOptions": {

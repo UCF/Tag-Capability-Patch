@@ -1,25 +1,31 @@
 (($) => {
-  const disableTagsButton = () => {
-    $('.tagadd').attr('disabled', true);
-  };
-
   const disableTagsReturn = () => {
     $('.newtag').on('keypress', (event) => {
-      if (event.keyCode === 13) {
-        event.preventDefault();
+      if (event.keyCode === 13 && event.tagChecked !== false) {
 
-        $('.newtag').pointer({
-          content: '<p>You do not have permission to add new tags.</p>',
-          position: 'bottom'
-        }).pointer('open');
+        const $input = $(event.currentTarget).val();
 
-        event.stopImmediatePropagation();
+        const data = {
+          action: 'ajax-tag-search',
+          tax: 'post_tag',
+          q: $input
+        };
+
+        $.get(ajaxurl, data, (response) => {
+          if (response === '') {
+            $('.newtag').pointer({
+              content: `<p>The tag "${$input}" has been removed from the tag list. You currently have permission to add existing tags.</p>`,
+              position: 'bottom'
+            }).pointer('open');
+
+            $(`li:contains('${$input}')`).remove();
+          }
+        });
       }
     });
   };
 
   if (!tcpConfig.canManage) {
-    disableTagsButton();
     disableTagsReturn();
   }
 })(jQuery);
