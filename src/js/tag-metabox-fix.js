@@ -1,6 +1,8 @@
 (($) => {
   const disableTagsReturn = () => {
-    $('.newtag').on('keypress', (event) => {
+    const $newTag = $('.newtag');
+
+    $newTag.on('keypress', (event) => {
       if (event.keyCode === 13 && event.tagChecked !== false) {
 
         const inputArray = $(event.currentTarget).val().split(',');
@@ -39,7 +41,7 @@
           }
 
           if (disallowedTags.length > 0) {
-            $('.newtag').pointer({
+            $newTag.pointer({
               content: `<p>The following tags have been removed: <span style="color: red">${disallowedTags.join(', ')}</span>. You do not have permission to publish new tags.</p>`,
               position: 'bottom'
             }).pointer('open');
@@ -58,7 +60,7 @@
           }
         };
 
-        const checkInterval = setInterval(onExecutionFinish, 25);
+        const checkInterval = setInterval(onExecutionFinish, 100);
         const timeoutInterval = setTimeout(removeInterval, 1000);
       }
     });
