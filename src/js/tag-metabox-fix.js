@@ -1,7 +1,13 @@
 (($) => {
-  const disableTagsReturn = () => {
-    const $newTag = $('.newtag');
-    const $addTag = $('.tagadd');
+  const disableTagsReturn = (tax) => {
+    const $parent = $(`#${tax.taxonomy}`);
+    const $newTag = $parent.find('.newtag');
+    const $addTag = $parent.find('.tagadd');
+
+    // If these two selectors don't return anything, return.
+    if ($newTag.length === 0 || $addTag.length === 0) {
+      return;
+    }
 
     $newTag.on('keypress', (event) => {
       if (event.keyCode === 13) {
@@ -14,8 +20,8 @@
     });
 
     const onTagAdd = () => {
-      const inputArray = $('#new-tag-post_tag').val().split(',');
-      const $tagInput = $('#tax-input-post_tag');
+      const inputArray = $(`#new-tag-${tax.taxonomy}`).val().split(',');
+      const $tagInput = $(`#tax-input-${tax.taxonomy}`);
       const disallowedTags = [];
       let inputChecks = 0;
 
@@ -39,7 +45,7 @@
       inputArray.forEach((input) => {
         const data = {
           action: 'ajax-tag-search',
-          tax: 'post_tag',
+          tax: tax.taxonomy,
           q: input.trim()
         };
 
@@ -60,7 +66,9 @@
     };
   };
 
-  if (!tcpConfig.canManage) {
-    disableTagsReturn();
+  if (tcpConfig) {
+    tcpConfig.taxonomies.forEach((tax) => {
+      disableTagsReturn(tax);
+    });
   }
 })(jQuery);

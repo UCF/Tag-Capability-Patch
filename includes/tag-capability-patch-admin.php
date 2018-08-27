@@ -10,7 +10,7 @@ if ( ! class_exists( 'TCP_Admin' ) ) {
          * @param string $hook The page that is being loaded
          */
         public static function enqueue_admin_scripts( $hook ) {
-            if ( $hook !== 'post.php' || $hook !== 'post-new.php' ) {
+            if ( $hook !== 'post.php' && $hook !== 'post-new.php' ) {
                 return;
             }
 
@@ -19,19 +19,27 @@ if ( ! class_exists( 'TCP_Admin' ) ) {
 
             wp_register_script( 'tcp_script', TCP_PLUGIN__JS_PATH . '/script.min.js', array( 'jquery', 'wp-pointer' ), null, true );
 
-            $taxonomy = get_taxonomy( 'post_tag' );
-            $capability = $taxonomy->cap->manage_terms;
+            $localization_array = array(
+                'taxonomies' => array()
+            );
 
-            $can_manage = true;
+            $taxonomies = get_taxonomies(
+                array(
+                    'hierarchical' => false,
+                    'meta_box_cb' => 'post_tags_meta_box'
+                ),
+                'object'
+            );
 
-            if ( $capability && is_user_logged_in() && ! current_user_can( $capability ) ) {
-                $can_manage = false;
+            foreach( $taxonomies as $taxonomy ) {
+                $localization_array['taxonomies'][] = array(
+                    'taxonomy' => $taxonomy->name,
+                    'capability' => $taxonomy->cap->manage_terms,
+                    'canManage' => current_user_can( $capability )
+                );
             }
 
-            wp_localize_script( 'tcp_script', 'tcpConfig', array(
-                'capability' => $capability,
-                'canManage'  => $can_manage
-            ) );
+            wp_localize_script( 'tcp_script', 'tcpConfig', $localization_array);
 
             wp_enqueue_script( 'tcp_script' );
         }
