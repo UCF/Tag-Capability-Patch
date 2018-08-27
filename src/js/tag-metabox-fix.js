@@ -68,7 +68,9 @@
 
   if (tcpConfig) {
     tcpConfig.taxonomies.forEach((tax) => {
-      disableTagsReturn(tax);
+      if (tax.canManage === false) {
+        disableTagsReturn(tax);
+      }
     });
   }
 })(jQuery);
