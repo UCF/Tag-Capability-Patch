@@ -1,4 +1,4 @@
-# Tag Capability Fix #
+# Tag Capability Patch #
 
 Ensures tags cannot be created without the user having the manage_categories capability.
 
