@@ -47,6 +47,7 @@ if ( ! class_exists( 'TCP_Admin' ) ) {
 				if ( $taxonomy->name !== 'post_format' ) {
 					$localization_array['taxonomies'][] = array(
 						'taxonomy' => $taxonomy->name,
+						'taxonomyPlural' => strtolower( $taxonomy->label ),
 						'capability' => $taxonomy->cap->manage_terms,
 						'canManage' => current_user_can( $taxonomy->cap->manage_terms )
 					);

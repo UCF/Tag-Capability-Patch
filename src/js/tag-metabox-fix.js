@@ -35,7 +35,7 @@
 
         if (disallowedTags.length > 0) {
           $newTag.pointer({
-            content: `<p>The following tags have been removed: <span style="color: red">${disallowedTags.join(', ')}</span>. You do not have permission to publish new tags.</p>`,
+            content: `<p>The following ${tax.taxonomyPlural} have been removed: <span style="color: red">${disallowedTags.join(', ')}</span>. You do not have permission to publish new ${tax.taxonomyPlural}.</p>`,
             position: 'bottom'
           }).pointer('open');
         }
