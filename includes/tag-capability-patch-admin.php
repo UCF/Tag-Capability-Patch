@@ -14,8 +14,8 @@ if ( ! class_exists( 'TCP_Admin' ) ) {
                 return;
             }
 
-            wp_enqueue_style('wp-pointer');
-            wp_enqueue_script('wp-pointer');
+            wp_enqueue_style( 'wp-pointer' );
+            wp_enqueue_script( 'wp-pointer' );
 
             wp_register_script( 'tcp_script', TCP_PLUGIN__JS_PATH . '/script.min.js', array( 'jquery', 'wp-pointer' ), null, true );
 
@@ -48,12 +48,12 @@ if ( ! class_exists( 'TCP_Admin' ) ) {
 					$localization_array['taxonomies'][] = array(
 						'taxonomy' => $taxonomy->name,
 						'capability' => $taxonomy->cap->manage_terms,
-						'canManage' => current_user_can( $capability ) // TODO $capability is not defined here
+						'canManage' => current_user_can( $taxonomy->cap->manage_terms )
 					);
 				}
 			}
 
-            wp_localize_script( 'tcp_script', 'tcpConfig', $localization_array);
+            wp_localize_script( 'tcp_script', 'tcpConfig', $localization_array );
 
             wp_enqueue_script( 'tcp_script' );
         }

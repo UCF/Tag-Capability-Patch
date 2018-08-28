@@ -20,15 +20,6 @@ include_once 'includes/tag-capability-patch-admin.php';
 
 if ( ! function_exists( 'tag_capability_patch_init' ) ) {
     function tag_capability_patch_init() {
-		// TODO is this necessary?
-        // $taxonomies = get_taxonomies(
-        //     array(
-        //         'hierarchical' => false,
-        //         'object_type' => array( 'post' )
-        //     ),
-        //     'object'
-        // );
-
         add_filter( 'pre_insert_term', array( 'TCP_Filters', 'on_pre_insert_term' ), 10, 2 );
         add_action( 'admin_enqueue_scripts', array( 'TCP_Admin', 'enqueue_admin_scripts' ), 10, 1 );
     }
