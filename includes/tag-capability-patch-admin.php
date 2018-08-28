@@ -3,24 +3,24 @@
  * Handles admin assets
  */
 if ( ! class_exists( 'TCP_Admin' ) ) {
-    class TCP_Admin {
-        /**
-         * Enqueues necessary admin scripts
-         * @author Jim Barnes
-         * @param string $hook The page that is being loaded
-         */
-        public static function enqueue_admin_scripts( $hook ) {
-            if ( $hook !== 'post.php' && $hook !== 'post-new.php' ) {
-                return;
-            }
+	class TCP_Admin {
+		/**
+		 * Enqueues necessary admin scripts
+		 * @author Jim Barnes
+		 * @param string $hook The page that is being loaded
+		 */
+		public static function enqueue_admin_scripts( $hook ) {
+			if ( $hook !== 'post.php' && $hook !== 'post-new.php' ) {
+				return;
+			}
 
-            wp_enqueue_style( 'wp-pointer' );
-            wp_enqueue_script( 'wp-pointer' );
+			wp_enqueue_style( 'wp-pointer' );
+			wp_enqueue_script( 'wp-pointer' );
 
-            wp_register_script( 'tcp_script', TCP_PLUGIN__JS_PATH . '/script.min.js', array( 'jquery', 'wp-pointer' ), null, true );
+			wp_register_script( 'tcp_script', TCP_PLUGIN__JS_PATH . '/script.min.js', array( 'jquery', 'wp-pointer' ), null, true );
 
-            $localization_array = array(
-                'taxonomies' => array()
+			$localization_array = array(
+				'taxonomies' => array()
 			);
 			$taxonomies = array();
 
@@ -36,12 +36,12 @@ if ( ! class_exists( 'TCP_Admin' ) ) {
 				if ( $object_taxonomies ) {
 					$taxonomies = wp_filter_object_list( $object_taxonomies, array(
 						'hierarchical' => false,
-                    	'meta_box_cb' => 'post_tags_meta_box'
+						'meta_box_cb' => 'post_tags_meta_box'
 					) );
 				}
 			}
 
-            foreach( $taxonomies as $taxonomy ) {
+			foreach( $taxonomies as $taxonomy ) {
 				// Don't have a better means of excluding post_format tax in
 				// queries/filters above, so do it here
 				if ( $taxonomy->name !== 'post_format' ) {
@@ -53,9 +53,9 @@ if ( ! class_exists( 'TCP_Admin' ) ) {
 				}
 			}
 
-            wp_localize_script( 'tcp_script', 'tcpConfig', $localization_array );
+			wp_localize_script( 'tcp_script', 'tcpConfig', $localization_array );
 
-            wp_enqueue_script( 'tcp_script' );
-        }
-    }
+			wp_enqueue_script( 'tcp_script' );
+		}
+	}
 }
