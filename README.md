@@ -1,11 +1,11 @@
 # Tag Capability Patch #
 
-Ensures tags cannot be created without the user having the manage_categories capability.
+Ensures tag-like terms cannot be created without the user having the appropriate manage_terms capability.
 
 
 ## Description ##
 
-Ensures tags cannot be created without the user having the manage_categories capability.
+The Tag-Capability-Patch is a work around for a bug related to the Tag Widget used in the Edit Post screen in WordPress. Currently, the Tag Widget allows users to add new terms (specifically tags and tag-like taxonomies) in the Edit Post screen even if that user does not have the specific manage_terms capability assigned to that taxonomy. An example of how roles are mapped can be read in this [plugin's wiki](https://github.com/UCF/Tag-Capability-Patch/wiki).
 
 
 ## Installation ##
