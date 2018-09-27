@@ -2,8 +2,8 @@
 Contributors: ucfwebcom
 Tags: ucf, ucf-plugin, tag, capabilities
 Requires at least: 4.7.3
-Tested up to: 4.9.6
-Stable tag: 1.0.0
+Tested up to: 4.9.8
+Stable tag: 1.0.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/copyleft/gpl-3.0.html
 
@@ -26,6 +26,10 @@ The Tag-Capability-Patch is a work around for a bug related to the Tag Widget us
 
 
 == Changelog ==
+
+= 1.0.1 =
+Bug Fixes:
+* Corrected bug where an empty string in the array causes all tags to be removed. For example, if the input reads "Existing Tag, " the `inputArray` would be `["Existing Tag", " "], which then causes the error to appear and for some reason all the tags to be removed.
 
 = 1.0.0 =
 * Initial release

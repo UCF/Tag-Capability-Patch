@@ -20,6 +20,10 @@ The Tag-Capability-Patch is a work around for a bug related to the Tag Widget us
 
 ## Changelog ##
 
+### 1.0.1 ###
+Bug Fixes:
+* Corrected bug where an empty string in the array causes all tags to be removed. For example, if the input reads "Existing Tag, " the `inputArray` would be `["Existing Tag", " "], which then causes the error to appear and for some reason all the tags to be removed.
+
 ### 1.0.0 ###
 * Initial release
 
