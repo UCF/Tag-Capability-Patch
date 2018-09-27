@@ -43,6 +43,10 @@
 
       // Loop through inputs and check to see if they exist
       inputArray.forEach((input) => {
+        if (typeof input === 'string' && input.trim() === '') {
+          return;
+        }
+
         const data = {
           action: 'ajax-tag-search',
           tax: tax.taxonomy,
