@@ -2,8 +2,8 @@
 Contributors: ucfwebcom
 Tags: ucf, ucf-plugin, tag, capabilities
 Requires at least: 4.7.3
-Tested up to: 4.9.8
-Stable tag: 1.0.1
+Tested up to: 6.1
+Stable tag: 1.0.2
 License: GPLv3 or later
 License URI: http://www.gnu.org/copyleft/gpl-3.0.html
 
@@ -26,6 +26,10 @@ The Tag-Capability-Patch is a work around for a bug related to the Tag Widget us
 
 
 == Changelog ==
+
+= 1.0.2 =
+Enhancements:
+* Added composer file.
 
 = 1.0.1 =
 Bug Fixes:

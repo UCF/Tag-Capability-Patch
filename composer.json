@@ -1,0 +1,8 @@
+{
+    "name": "ucf/tag-capability-patch",
+    "description": "Ensures tag-like terms cannot be created without the user having the appropriate manage_terms capability.",
+    "type": "wordpress-plugin",
+    "require": {
+        "composer/installers": "~1.0"
+    }
+}

@@ -2,7 +2,7 @@
 /*
 Plugin Name: Tag Capability Patch
 Description: Ensures users have the taxonomy's `manage_terms` capability in order to create new terms.
-Version: 1.0.1
+Version: 1.0.2
 Author: UCF Web Communications
 License: GPL3
 Github Plugin URI: UCF/Tag-Capability-Patch
